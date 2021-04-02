@@ -813,6 +813,9 @@ dependencies = [
  "source_item",
  "structopt",
  "tokio 1.2.0",
+ "tree-sitter-javascript",
+ "tree-sitter-python",
+ "tree-sitter-tags",
  "upgrade",
  "utility",
 ]
@@ -1783,6 +1786,47 @@ name = "traitobject"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "efd1f82c56340fdf16f2a953d7bda4f8fdffba13d93b00844c25572110b26079"
+
+[[package]]
+name = "tree-sitter"
+version = "0.19.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1f41201fed3db3b520405a9c01c61773a250d4c3f43e9861c14b2bb232c981ab"
+dependencies = [
+ "cc",
+ "regex",
+]
+
+[[package]]
+name = "tree-sitter-javascript"
+version = "0.19.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "840bb4d5f3c384cb76b976ff07297f5a24b6e61a708baa4464f53e395caaa5f9"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
+name = "tree-sitter-python"
+version = "0.19.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5646bfe71c4eb1c21b714ce0c38334c311eab767095582859e85da6281e9fd6c"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
+name = "tree-sitter-tags"
+version = "0.19.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1dca8a96af2d9abf5748ac68bc7a0ee507ee576d17e2e83785a93e191288418a"
+dependencies = [
+ "memchr",
+ "regex",
+ "tree-sitter",
+]
 
 [[package]]
 name = "try-lock"

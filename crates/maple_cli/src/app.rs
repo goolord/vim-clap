@@ -21,6 +21,9 @@ pub enum Cmd {
     /// Dumb jump.
     #[structopt(name = "dumb-jump")]
     DumbJump(crate::cmd::dumb_jump::DumbJump),
+    /// TreeSitter
+    #[structopt(name = "tree-sitter")]
+    TreeSitter(crate::cmd::tree_sitter::TreeSitter),
     /// Generate the project-wide tags using ctags.
     #[structopt(name = "tags")]
     Tags(crate::cmd::tags::Tags),
@@ -107,6 +110,7 @@ impl Maple {
             Cmd::Filter(filter) => filter.run(self.params)?,
             Cmd::Helptags(helptags) => helptags.run()?,
             Cmd::DumbJump(dumb_jump) => dumb_jump.run()?,
+            Cmd::TreeSitter(tree_sitter) => tree_sitter.run()?,
             Cmd::RipGrepForerunner(rip_grep_forerunner) => rip_grep_forerunner.run(self.params)?,
             Cmd::RPC => {
                 if let Some(ref log_path) = self.log {

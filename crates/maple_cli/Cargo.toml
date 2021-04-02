@@ -25,6 +25,9 @@ reqwest = { version = "0.10", features = ["blocking"] }
 serde = { package = "serde", version = "1.0",  features = ["derive"] }
 serde_json = "1.0"
 structopt = "0.3"
+tree-sitter-tags = "0.19"
+tree-sitter-javascript = "0.19"
+tree-sitter-python = "0.19"
 
 filter = { path = "../filter" }
 icon = { path = "../icon" }

@@ -6,3 +6,4 @@ pub mod filter;
 pub mod grep;
 pub mod helptags;
 pub mod tags;
+pub mod tree_sitter;
