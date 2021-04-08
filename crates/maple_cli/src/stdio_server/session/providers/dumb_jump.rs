@@ -18,12 +18,18 @@ pub fn handle_dumb_jump_message(msg: Message) {
             cmd_dir: Some(cwd.into()),
         };
 
-        let result = match dumb_jump.references_or_occurrences() {
-            Ok(Lines { lines, indices }) => {
+        let result = match dumb_jump.references_or_occurrences().await {
+            Ok(Lines {
+                mut lines,
+                mut indices,
+            }) => {
                 let total = lines.len();
+                // Only show the top 200 items.
+                lines.truncate(200);
+                indices.truncate(200);
                 let result = json!({
                 "lines": lines,
-                "indices": indices.into_iter().take(200).collect::<Vec<_>>(),
+                "indices": indices,
                 "total": total,
                 });
 

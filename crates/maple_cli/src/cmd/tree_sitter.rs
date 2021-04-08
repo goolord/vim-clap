@@ -48,7 +48,11 @@ impl TreeSitter {
         let tags = tags_iter.filter_map(|x| x.ok()).collect::<Vec<_>>();
 
         for tag in tags.iter() {
-          println!("tag: {:?}", tag);
+            println!("tag: {:?}", tag);
+            println!(
+                "syntax_type_name: {}",
+                python_config.syntax_type_name(tag.syntax_type_id)
+            );
             // println!("kind: {:?}", tag.kind);
             // println!("range: {:?}", tag.range);
             // println!("name_range: {:?}", tag.name_range);
