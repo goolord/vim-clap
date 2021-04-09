@@ -29,6 +29,7 @@ structopt = "0.3"
 tree-sitter-tags = "0.19"
 tree-sitter-javascript = "0.19"
 tree-sitter-python = "0.19"
+tree-sitter-rust = "0.19"
 
 filter = { path = "../filter" }
 icon = { path = "../icon" }

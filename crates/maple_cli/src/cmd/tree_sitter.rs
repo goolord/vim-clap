@@ -11,6 +11,10 @@ pub struct TreeSitter {
     #[structopt(index = 1, short, long)]
     pub word: String,
 
+    /// Specify the working directory.
+    #[structopt(long = "path", parse(from_os_str))]
+    pub path: Option<PathBuf>,
+
     /// Definition kind.
     #[structopt(long = "kind")]
     pub kind: Option<String>,
@@ -38,12 +42,21 @@ impl TreeSitter {
         )
         .unwrap();
 
+        let rust_config = TagsConfiguration::new(
+            tree_sitter_rust::language(),
+            tree_sitter_rust::TAGGING_QUERY,
+            tree_sitter_rust::LOCALS_QUERY,
+        )
+        .unwrap();
+
+        let source = if let Some(p) = self.path {
+            std::fs::read(p)?.as_slice()
+        } else {
+            &b"class A { getB() { return c(); } }".to_vec()
+        };
+
         let (tags_iter, root_node_has_error) = context
-            .generate_tags(
-                &javascript_config,
-                b"class A { getB() { return c(); } }",
-                None,
-            )
+            .generate_tags(&javascript_config, source, None)
             .map_err(|e| anyhow!("tree sitter error: {:?}", e))?;
         let tags = tags_iter.filter_map(|x| x.ok()).collect::<Vec<_>>();
 
